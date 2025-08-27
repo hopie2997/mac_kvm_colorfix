@@ -110,6 +110,11 @@ caffeinateWatcher = hs.caffeinate.watcher.new(function(event)
   if event == hs.caffeinate.watcher.systemDidWake then
     resetCache()  -- Reset cache after system wake
     runDebouncedBurst()
+  elseif event == hs.caffeinate.watcher.screensDidUnlock then
+    resetCache()  -- Reset cache after screen unlock
+    runDebouncedBurst()
+  elseif event == hs.caffeinate.watcher.screensDidLock then
+    hs.printf("[KVM] Screen locked")
   end
 end)
 caffeinateWatcher:start()
